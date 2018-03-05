@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[catalan]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Pràctica 1: Errors}
+\author{Cristina Rosell Blanco: 1457235  \\ Oriol Ventosa Altimira: 1457285}
+\begin{document}
+	\maketitle
+	
+	\newpage
+
+	\section{Problema 1}
+	\paragraph{A:} Volem veure que $0\leqslant f(x) \textless \frac{1}{2}$ per cada $x\neq0$. 
+	
+	Primer mirarem la desigualtat $0\leqslant f(x)$ :
+	$$\frac{1-cos(x)}{x^2} \geqslant 0$$
+	
+	Veiem que la funció $cos(x)$ està fitada per 1, de manera que mai podrem obtenir un nombre negatiu al numerador. Com que $x^2$ és sempre positiu tampoc podrem tenir un nombre negatiu al denominador per tant la funcio $f(x)$ serà sempre positiva o igual a 0.
+	
+	Ara analitzem l'altra desigualtat:
+	$$\frac{1-cos(x)}{x^2} \textless \frac{1}{2}$$
+	$$-cos(x) \textless -1+\frac{x^2}{2}$$
+	$$cos(x) \textgreater 1-\frac{x^2}{2}$$	
+	
+	Si desenvolupem $cos(x)$ amb la seva fórmula de Taylor a prop del punt 0, observem el següent:
+	
+	$$1-\frac{x^2}{2}+\frac{x^4}{4!}-\frac{x^6}{6!}+\dots \textgreater 1-\frac{x^2}{2}$$
+	$$\frac{x^4}{4!}-\frac{x^6}{6!}+\dots \textgreater 0$$
+	
+	I aquesta última desigualtat serà sempre positiva per qualsevol $x\neq0$.
+	
+	\paragraph{B:} Si analitzem el punt $x_0=1,2\times 10^{-5}$ amb el programa de precisió simple obtenim que $x=0.000000$, en canvi, amb el programa de precisió doble obtenim que $x=0.4999997329749008$. 
+	
+	Com podem observar, el resultat obtingut amb el programa amb precisió simple és completament erroni. Això és degut a que la funció cosinus quan és treballa amb la variable $float$ aproxima $cos(1,2\times 10^{-5})$ a 1 fent que el numerador sigui $1-1$, donant així el resultat $f(x_0=1,2\times 10^{-5})=0$.
+	
+	\paragraph{D:} Quan x tendeix a 0 veiem que $cos(x)$ tendeix a 1. Llavors, al efectuar el calcul $1-cos(x)$ es produeix un error de cancel·lació ja que 1 i $cos(x)$ prenen el mateix valor però amb signe oposat. En canvi, si utilitzem la nova fórmula $\frac{sin^2(x)}{x^2(1+cos(x))}$, obtinguda a partir de multiplicar per $\frac{1+cos(x)}{1+cos(x)}$, veiem que es comporta com $\frac{x^2}{x^2(1+cos(x))}$ quan x tendeix a 0 i ens queda finalment $\frac{1}{1+cos(x)}$. 
+	
+	POSEM ALGO MÉS PER TANCAR LA RESPOSTA?
+	
+	\newpage
+	
+	\section{Problema 2}
+	\paragraph{A:} Observem que quan $b^2 \gg 4ac$, $\sqrt{b^2-4ac}\sim|b|$. Llavors, si substituim aquesta fórmula a l'equació obtenim $\frac{-b\pm|b|}{2a}$. A partir d'aquí, si $b\textgreater0$, tindríem problemes per calcular la solució ja que es produiria un error de cancel·lació. I si $b\textless0$, tindríem el mateix problema però únicament amb la solució $\frac{-b-|b|}{2a}$.
+	
+	\paragraph{B:} A partir de la fórmula inicial: $\frac{-b\pm\sqrt{b^2-4ac}}{2a}$, analitzarem els casos positiu i negatiu per separat.
+	
+	Prenent + : $$\frac{-b+\sqrt{b^2-4ac}}{2a}$$ ho multipliquem per $\frac{b+\sqrt{b^2-4ac}}{b+\sqrt{b^2-4ac}}$ i veiem que 
+	$$\frac{-b+\sqrt{b^2-4ac}}{2a}\cdot\frac{b+\sqrt{b^2-4ac}}{b+\sqrt{b^2-4ac}}=-\frac{2c}{(b+\sqrt{b^2-4ac})}$$
+	Amb això evitem l'error de cancel·lació quan $b\textgreater0$.
+	
+	Prenent $-$ : $$-\frac{b+\sqrt{b^2-4ac}}{2a}$$
+	ho multipliquem per $\frac{b-\sqrt{b^2-4ac}}{b-\sqrt{b^2-4ac}}$ i ens queda 
+	$$-\frac{b+\sqrt{b^2-4ac}}{2a}\cdot\frac{b-\sqrt{b^2-4ac}}{b-\sqrt{b^2-4ac}}=-\frac{2c}{(b-\sqrt{b^2-4ac})}$$
+	En aquest cas evitem l'error de cancel·lació quan $b\textless0$.
+	
+	
+	\newpage
+	
+	\section{Problema 3}
+	
+	
+	
+	\newpage
+	
+	\section{Problema 4}
+	
+	
+	
+	
+	DETEXIFY
+	
+\end{document}
