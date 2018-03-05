@@ -19,25 +19,25 @@ int main()
 
 void sumatoric(int n)
 {
-    double s=0;
-    double igran=1;
+    float s=0;
+    float igran=1;
     for(int i=1;i<n+1;i++)
     {
         s=s+(1/(igran*igran));
         igran=igran+1;
     }
-    printf("El sumatori creixent és: %.16G\n",s);
+    printf("El sumatori creixent és: %f\n",s);
 }
 
 void sumatorid(int n)
 {
-    double s=0;
-    double igran=n;
+    float s=0;
+    float igran=n;
     
     for(int i=n;1<i+1;i--)
     {
         s=s+(1/(igran*igran));
         igran=igran-1;
     }
-    printf("El sumatori decreixent és: %.16G\n",s);
+    printf("El sumatori decreixent és: %f\n",s);
 }
