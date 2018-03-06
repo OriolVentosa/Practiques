@@ -11,6 +11,7 @@
 
 \title{Pràctica 1: Errors}
 \author{Cristina Rosell Blanco: 1457235  \\ Oriol Ventosa Altimira: 1457285}
+\date{11 de març de 2018}
 \begin{document}
 	\maketitle
 	
@@ -60,17 +61,20 @@
 	$$-\frac{b+\sqrt{b^2-4ac}}{2a}\cdot\frac{b-\sqrt{b^2-4ac}}{b-\sqrt{b^2-4ac}}=-\frac{2c}{(b-\sqrt{b^2-4ac})}$$
 	En aquest cas evitem l'error de cancel·lació quan $b\textless0$.
 	
+	CAL ACABAR DE MIRAR QUE NO S'ANUL·LI EL DENOMINADOR A LES NOVES FORMES
+	
 	
 	\newpage
 	
 	\section{Problema 3}
+	\paragraph{B:} Considerant el vector $x={\{10000,10001,10002\}}^T$, la variança en precisió simple ens dóna 1.000000 si ho calculem en dos bucles i 0.000000 si ho calculem en un sol bucle. En canvi, al calcular-la en precisió doble, tant si ho fem amb un bucle com amb dos, ens dóna 1 en els dos casos. AIXÒ ES DEU A QUE..............
 	
-	
+	\paragraph{C:} Si calculem la variança d'un vector de 100 components, com el de l'arxiu \textit{prova100.txt}, veiem que la diferència entre els calculs amb un bucle o dos és bastant considerable, ja que amb dos bucles obtenim 0.696970 i amb un bucle ens surt 41.373737. I com hem esmentat abans, al calcular-ho en precisió doble, en ambdós casos obtenim el resultat de 0.696969696969697, molt més precís que amb precisió simple.
 	
 	\newpage
 	
 	\section{Problema 4}
-	
+	\paragraph{C:} Agafarem 45000 com a nombre d'iteracions,
 	
 	
 	
