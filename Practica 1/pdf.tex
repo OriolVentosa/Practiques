@@ -41,9 +41,7 @@
 	
 	Com podem observar, el resultat obtingut amb el programa amb precisió simple és completament erroni. Això és degut a que la funció cosinus quan és treballa amb la variable $float$ aproxima $cos(1,2\times 10^{-5})$ a 1 fent que el numerador sigui $1-1$, donant així el resultat $f(x_0=1,2\times 10^{-5})=0$.
 	
-	\paragraph{D:} Quan x tendeix a 0 veiem que $cos(x)$ tendeix a 1. Llavors, al efectuar el calcul $1-cos(x)$ es produeix un error de cancel·lació ja que 1 i $cos(x)$ prenen el mateix valor però amb signe oposat. En canvi, si utilitzem la nova fórmula $\frac{sin^2(x)}{x^2(1+cos(x))}$, obtinguda a partir de multiplicar per $\frac{1+cos(x)}{1+cos(x)}$, veiem que es comporta com $\frac{x^2}{x^2(1+cos(x))}$ quan x tendeix a 0 i ens queda finalment $\frac{1}{1+cos(x)}$. 
-	
-	POSEM ALGO MÉS PER TANCAR LA RESPOSTA?
+	\paragraph{D:} Quan x tendeix a 0 veiem que $cos(x)$ tendeix a 1. Llavors, al efectuar el calcul $1-cos(x)$ es produeix un error de cancel·lació ja que el mòdul de 1 i de $cos(x)$ prenen el mateix valor però amb signe oposat. En canvi, si utilitzem la nova fórmula $\frac{sin^2(x)}{x^2(1+cos(x))}$, obtinguda a partir de multiplicar per $\frac{1+cos(x)}{1+cos(x)}$, veiem que es comporta com $\frac{x^2}{x^2(1+cos(x))}$ quan x tendeix a 0 i ens queda finalment $\frac{1}{1+cos(x)}$. 
 	
 	\newpage
 	
@@ -52,29 +50,28 @@
 	
 	\paragraph{B:} A partir de la fórmula inicial: $\frac{-b\pm\sqrt{b^2-4ac}}{2a}$, analitzarem els casos positiu i negatiu per separat.
 	
-	Prenent + : $$\frac{-b+\sqrt{b^2-4ac}}{2a}$$ ho multipliquem per $\frac{b+\sqrt{b^2-4ac}}{b+\sqrt{b^2-4ac}}$ i veiem que 
+	Prenent + : $$\frac{-b+\sqrt{b^2-4ac}}{2a}$$ 
+	veiem que en aquest cas quan $b<0$ no tenim cap problema, però quan $b>0$ tenim un error de cancel·lació. Així doncs, per solucionar-ho, ho multipliquem per $\frac{b+\sqrt{b^2-4ac}}{b+\sqrt{b^2-4ac}}$ i observem que 
 	$$\frac{-b+\sqrt{b^2-4ac}}{2a}\cdot\frac{b+\sqrt{b^2-4ac}}{b+\sqrt{b^2-4ac}}=-\frac{2c}{(b+\sqrt{b^2-4ac})}$$
-	Amb això evitem l'error de cancel·lació quan $b\textgreater0$.
+	Amb això evitem l'error de cancel·lació que teníem quan $b\textgreater0$.
 	
 	Prenent $-$ : $$-\frac{b+\sqrt{b^2-4ac}}{2a}$$
-	ho multipliquem per $\frac{b-\sqrt{b^2-4ac}}{b-\sqrt{b^2-4ac}}$ i ens queda 
+	en el cas de $b>0$ podem utilitzar la fórmula, però quan $b<0$ apareix un error de cancel·lació. Llavors, si ho multipliquem per $\frac{b-\sqrt{b^2-4ac}}{b-\sqrt{b^2-4ac}}$, ens queda 
 	$$-\frac{b+\sqrt{b^2-4ac}}{2a}\cdot\frac{b-\sqrt{b^2-4ac}}{b-\sqrt{b^2-4ac}}=-\frac{2c}{(b-\sqrt{b^2-4ac})}$$
-	En aquest cas evitem l'error de cancel·lació quan $b\textless0$.
-	
-	CAL ACABAR DE MIRAR QUE NO S'ANUL·LI EL DENOMINADOR A LES NOVES FORMES
-	
+	En aquest cas evitem l'error de cancel·lació quan $b\textless0$, com volíem.
 	
 	\newpage
 	
 	\section{Problema 3}
-	\paragraph{B:} Considerant el vector $x={\{10000,10001,10002\}}^T$, la variança en precisió simple ens dóna 1.000000 si ho calculem en dos bucles i 0.000000 si ho calculem en un sol bucle. En canvi, al calcular-la en precisió doble, tant si ho fem amb un bucle com amb dos, ens dóna 1 en els dos casos. AIXÒ ES DEU A QUE..............
+	\paragraph{B:} Considerant el vector $x={\{10000,10001,10002\}}^T$, la variança en precisió simple ens dóna 1.000000 si ho calculem en dos bucles i 0.000000 si ho calculem en un sol bucle. En canvi, al calcular-la en precisió doble, tant si ho fem amb un bucle com amb dos, ens dóna 1 en els dos casos. Això es deu a que quan es calculen els quadrats de nombres tan grans en precisió simple, no dóna totes les xifres significatives correctes, és un error d'operació.
+	Per exemple, quan calculem $(10002)^2$ obtenim com a resposta 100040000, quan realment hauríem d'obtenir 100040004.
 	
 	\paragraph{C:} Si calculem la variança d'un vector de 100 components, com el de l'arxiu \textit{prova100.txt}, veiem que la diferència entre els calculs amb un bucle o dos és bastant considerable, ja que amb dos bucles obtenim 0.696970 i amb un bucle ens surt 41.373737. I com hem esmentat abans, al calcular-ho en precisió doble, en ambdós casos obtenim el resultat de 0.696969696969697, molt més precís que amb precisió simple.
 	
 	\newpage
 	
 	\section{Problema 4}
-	\paragraph{C:} Agafarem 45000 com a nombre d'iteracions,
+	\paragraph{C:}
 	
 	
 	

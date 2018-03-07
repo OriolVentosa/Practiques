@@ -4,6 +4,8 @@
 void sumatoric(int);
 void sumatorid(int);
 void nousumatori(int);
+
+
 int main()
 {
     int n;
@@ -12,8 +14,9 @@ int main()
     scanf("%d",&n);
     
     sumatoric(n);
-    sumatorid(n);   
+    sumatorid(n);
     nousumatori(n);
+
     return 0;
 }
 
@@ -53,40 +56,38 @@ void nousumatori(int n)
         r[i] = 2000;
     }
 
-    for (k = n; k > 0; k -= 14) {
+    for (k = n; k > 0; k -= 14) { //k-=14 es perquè obtenim quatre digits extra cada catorze iteracions
         d = 0;
 
         i = k;
-        for (;;) {
+        for (;;) { //implementació  de l'aproximació de pi de Beeler
             d += r[i] * 10000;
             b = 2 * i - 1;
 
             r[i] = d % b;
             d /= b;
             i--;
-            if (i == 0) break;
+            if (i == 0) break; 
             d *= i;
         }
-        printf("%.4d\n", c + d / 10000);
-        resultatint=(resultatint*10000)+(c + d / 10000);
-        printf("resultatint %lld\n",resultatint);
+
+        resultatint=(resultatint*10000)+(c + d / 10000); //guardar els digits de pi en un enter
         c = d % 10000;
     }
     
     copia=resultatint;
     d=1;
-    while(copia != 0)
+    while(copia != 0)   //trobar els digis de l'aproximació de pi
     {
-        // n = n/10
         copia /= 10;
         digits=digits*10;
     }
-    printf("digits %lld",digits);
-    double resultat=resultatint;
     
-    resultat=(resultatint/(digits/10.));
-    printf("pi es %f\n", resultat);
-    resultat=(resultat*resultat)/6;
+    float resultat=resultatint;
+
+    resultat=(resultatint/(digits/10.));  //expressar pi com a decimal
+
+    resultat=(resultat*resultat)/6;  //utilitzar l'aproximació que hem trobat per calcula pi^2/6
     
     printf("Amb la nova formula el resultat és %f\n",resultat);
 
