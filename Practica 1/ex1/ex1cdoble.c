@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <math.h>
 
@@ -14,7 +13,7 @@ int main(void)
     
 }
 
-double operacio(double x)
+double operacio(double x) //funció f(x) reescrita per reduïr l'error
 {
     if (x==0)
     {

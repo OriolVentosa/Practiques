@@ -13,7 +13,7 @@ int main(void)
     
 }
 
-float operacio(float x)
+float operacio(float x) //funció f(x) reescrita per reduïr l'error
 {
     if (x==0)
     {

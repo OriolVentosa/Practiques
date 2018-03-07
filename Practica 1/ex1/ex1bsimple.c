@@ -13,7 +13,7 @@ int main(void)
     
 }
 
-float operacio(float x)
+float operacio(float x) //funció f(x) com a float
 {
     if (x==0)
     {

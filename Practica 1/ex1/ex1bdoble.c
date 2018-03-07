@@ -13,7 +13,7 @@ int main(void)
     
 }
 
-double operacio(double x)
+double operacio(double x)   //funció f(x) com a double
 {
     if (x==0)
     {
