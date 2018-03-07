@@ -84,10 +84,9 @@ void nousumatori(int n)
     }
     
     float resultat=resultatint;
-    printf("pi es %lld\n", resultatint);
 
     resultat=(resultatint/(digits/10.));  //expressar pi com a decimal
-    printf("pi es %f\n", resultat);
+
     resultat=(resultat*resultat)/6;  //utilitzar l'aproximació que hem trobat per calcula pi^2/6
     
     printf("Amb la nova formula el resultat és %f\n",resultat);

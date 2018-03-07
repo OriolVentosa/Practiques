@@ -67,9 +67,7 @@ void nousumatori(int n)
             if (i == 0) break; 
             d *= i;
         }
-//         printf("%.4d\n", c + d / 10000);
         resultatint=(resultatint*10000)+(c + d / 10000); //guardar els digits de pi en un enter
-//         printf("resultatint %lld\n",resultatint);
         c = d % 10000;
     }
     
@@ -84,7 +82,7 @@ void nousumatori(int n)
     double resultat=resultatint;
     
     resultat=(resultatint/(digits/10.)); //expressar pi com a decimal
-     printf("pi es %.16G\n", resultat);
+
     resultat=(resultat*resultat)/6; //utilitzar l'aproximació que hem trobat per calcula pi^2/6
     
     printf("Amb la nova formula el resultat és %.16G\n",resultat);
