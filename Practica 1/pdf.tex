@@ -64,17 +64,28 @@
 	
 	\section{Problema 3}
 	\paragraph{B:} Considerant el vector $x={\{10000,10001,10002\}}^T$, la variança en precisió simple ens dóna 1.000000 si ho calculem en dos bucles i 0.000000 si ho calculem en un sol bucle. En canvi, al calcular-la en precisió doble, tant si ho fem amb un bucle com amb dos, ens dóna 1 en els dos casos. Això es deu a que quan es calculen els quadrats de nombres tan grans en precisió simple, no dóna totes les xifres significatives correctes, és un error d'operació.
-	Per exemple, quan calculem $(10002)^2$ obtenim com a resposta 100040000, quan realment hauríem d'obtenir 100040004.
+	Per exemple, quan calculem $(10002)^2$ obtenim com a resultat 100040000, quan realment hauríem d'obtenir 100040004.
 	
 	\paragraph{C:} Si calculem la variança d'un vector de 100 components, com el de l'arxiu \textit{prova100.txt}, veiem que la diferència entre els calculs amb un bucle o dos és bastant considerable, ja que amb dos bucles obtenim 0.696970 i amb un bucle ens surt 41.373737. I com hem esmentat abans, al calcular-ho en precisió doble, en ambdós casos obtenim el resultat de 0.696969696969697, molt més precís que amb precisió simple.
 	
 	\newpage
 	
 	\section{Problema 4}
-	\paragraph{C:}
-	
-	
-	
-	DETEXIFY
-	
+	\paragraph{C:} Hem d'analitzar els dos programes per separat ja que es comporten de manera diferent.
+    
+    Pel que fa el programa que treballa amb variables de precisió simple, tant amb el càlcul de manera creixent com decreixent del sumatori, arribem a obtenir només quatre decimals significatius fent milers iteracions i obtenir 5 decimals significatius requereix 250000 iteracions.
+    
+    Pel que fa el programa que treballa amb variables de precisió doble obtenim les mateixes xifres significatives que amb el programa de precisió simple. Apart d'això els decimals no significatius varien quan comparem el cas creixent amb el decreixent.
+    
+    Això és degut a que, tot i que en paper haurien de donar el mateix resultat, el ordinador no és capaç d'efectuar certes propietats dels reals, com ara la propietat associativa o la commutativa, ja que treballa amb una aproximacions, limitades per l'epsilón de màquina.
+    
+    \paragraph{D:} El nou mètode que proposem per calcular $\frac{\pi^2}{6}$ és calcular $\pi$, implementant una aproximació de Beeler et al. al 1972 que correspon a la formula:
+    $$2(1+\frac{1}{3}(1+\frac{2}{5}(1+...(1+\frac{n}{2n+1})...)))$$
+    
+    Amb aquest mètode obtenim totes les xifres representades a la figura 6 del pdf d'enunciats de manera que el mètode convergeix molt més ràpidament a $\frac{\pi^2}{6}$ que la formula usada ens els apartats anteriors ( $\sum_{k=1}^{n} \frac{1}{k^2}$ ).
+    
+    Cal destacar que amb el nou mètode quan fem un nombre relativament gran de iteracions, a partir de 57, obtenim resultats totalment erronis, ja que l'implementació de l'aproximació de $\pi$ que hem usat fa servir nombres enter de manera que arriba un punt que ja no es capaç de guardar tants dígits(per retrassar el problema s'han utilitzat el tipus de variable $long$ $long$ $ int$).
+ 
+
+\end{document}
 \end{document}
