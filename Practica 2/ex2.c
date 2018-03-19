@@ -12,16 +12,20 @@ int main()
 {
     double xn=7;
     double bn=1/df(xn);
+    double error1, error2;
     int iteracions;
     printf("Escriu nombre màxim d'iteracions\n");
     scanf("%d",&iteracions);
     for(int i=0; i< iteracions;i++)
     {
+        error1=xn-serie(xn,bn);
         xn=serie(xn, bn);
         bn=bk(xn,bn);
+        error2=xn-serie(xn,bn);
+        printf("Quocient en/exn-1 %lf\n", error2/error1);
     }
     
-    printf("L'arrel és %f\n", xn);
+    printf("L'arrel és %.16G\n", xn);
 
     return 0;
 }
