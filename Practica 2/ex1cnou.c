@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#define error 5e-17
+#define error 5e-13
 
 double f(double);
 
