@@ -1,32 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#define error 0.05
 
 double f(double);
 double df(double);
 double bk(double,double);
 double serie(double, double);
 
-int main()
+int main(int argc, char* fitxers[])
 {
-    double xn=7;
+    double xn, xncopia;
+    printf("Per quin número comencem? ");
+    scanf("%lf",&xn);
+    
+    FILE* f;
+    
+    if((f=fopen(fitxers[1],"w"))==NULL) return 1;
+    
     double bn=1/df(xn);
-    double error1, error2;
+    double error1, error2, error1copia;
     int iteracions;
     printf("Escriu nombre màxim d'iteracions\n");
     scanf("%d",&iteracions);
-    for(int i=0; i< iteracions;i++)
+    for(int j=1; j<5; j++)
     {
-        error1=xn-serie(xn,bn);
-        xn=serie(xn, bn);
-        bn=bk(xn,bn);
-        error2=xn-serie(xn,bn);
-        printf("Quocient en/exn-1 %lf\n", error2/error1);
-    }
-    
-    printf("L'arrel és %.16G\n", xn);
+        xncopia=xn;
+        fprintf(f,"Ordre %d\n",j);
+        for(int i=0; i<iteracions;i++)
+        {
+            error1=fabs(xncopia-serie(xncopia,bn));
+            xncopia=serie(xncopia, bn);
+            bn=bk(xncopia,bn);
+            error2=fabs(xn-serie(xncopia,bn));
+            error1copia=error1;
 
+            for(int k=1;k<j;k++)
+            {
+                error1=error1*error1copia;
+            }
+        
+            fprintf(f, "Iteració %d:    %.16G\n",i, error2/error1);
+        }
+    }
+
+    printf("L'arrel és %.16G\n", xncopia);
+    
+    fclose(f);
     return 0;
 }
 
@@ -49,8 +69,5 @@ double bk(double xn, double y)
 
 double serie(double xn, double bn)
 {
-    double x = f(xn);
-//     printf("f(xn) %f", x);
-    x=xn-x;
     return xn-bn*f(xn);
 }
