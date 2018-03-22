@@ -22,7 +22,7 @@ int main()
     
     printf("La solució real és %.16G\n", solreal);
     
-    printf("L'error és %.16G\n",(solreal*solreal*solreal)-solreal-40);
+    printf("L'error és %.16G\n",(solreal*solreal*solreal)-solreal-400);
     
 }
 
