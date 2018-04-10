@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+//posar que pari quan faci les iteracions suficients
+
 double f(double);
 double df(double);
 double ddf(double);
