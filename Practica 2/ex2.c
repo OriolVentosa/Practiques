@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define error 0.05
+
+//parar de fer iteracions
 
 double f(double);
 double df(double);
@@ -11,14 +12,13 @@ double serie(double, double);
 int main(int argc, char* fitxers[])
 {
     double xn, xncopia;
-    printf("Per quin número comencem? ");
+    printf("Per quin número comencem? "); // minim 5.7
     scanf("%lf",&xn);
     
     FILE* f;
     
     if((f=fopen(fitxers[1],"w"))==NULL) return 1;
-    
-    double bn=1/df(xn);
+    double bn;
     double error1, error2, error1copia;
     int iteracions;
     printf("Escriu nombre màxim d'iteracions\n");
@@ -26,13 +26,15 @@ int main(int argc, char* fitxers[])
     for(int j=1; j<5; j++)
     {
         xncopia=xn;
+        bn=1/df(xn);
+
         fprintf(f,"Ordre %d\n",j);
         for(int i=0; i<iteracions;i++)
         {
             error1=fabs(xncopia-serie(xncopia,bn));
             xncopia=serie(xncopia, bn);
             bn=bk(xncopia,bn);
-            error2=fabs(xn-serie(xncopia,bn));
+            error2=fabs(xncopia-serie(xncopia,bn));
             error1copia=error1;
 
             for(int k=1;k<j;k++)

@@ -18,7 +18,7 @@ int main()
     
     eq2grau(eq2,uv);
     
-    solreal= powf(uv[0], (double)1./3)+powf(uv[1], (double)1./3);
+    solreal= powf(uv[0], (double)1./3)+powf(uv[1], (double)1./3);   //càlcul utilitzant la fórmula de Cardano
     
     printf("La solució real és %.16G\n", solreal);
     
@@ -26,7 +26,7 @@ int main()
     
 }
 
-void eq2grau(double coef[3], double res[2])
+void eq2grau(double coef[3], double res[2]) //càlcul equació de 2n grau
 {
     res[0]=(-coef[1]+sqrtf((coef[1]*coef[1]-4*coef[0]*coef[2])))/(2*coef[2]);
     res[1]=(-coef[1]-sqrtf((coef[1]*coef[1]-4*coef[0]*coef[2])))/(2*coef[2]);

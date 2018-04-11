@@ -1,33 +1,105 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+#define error 5e-13
 
-void eq2grau(double [3], double [2]);
+double f(double);
+
+int biseccio(double[2]);
+double secant(double,double);
+double mnewton(double xn);
 
 int main()
-{   
-    double coef[4],uv[2],eq2[3],solreal;
+{
+    double inter[2];
+    int n;
+    int intcanviat;
+    inter[0]=2;
+    inter[1]=8;
+
+    double interval0;
+    printf("Introdueix nombre d'iteracions màximes: ");
+    scanf("%i", &n);
     
-    coef[0]=-400;
-    coef[1]=-1;
-    coef[2]=0;
-    coef[3]=1;
+    for(int i=0; i<n+1; i++)
+    {
+        interval0=inter[intcanviat];
+        intcanviat=biseccio(inter);
+        if(fabs(interval0-inter[intcanviat])<=error) 
+        {
+            printf("Nombre d'iteracions biseccio: %d\n", i);            
+            break;
+        }
+            
+    }
+    printf("L'aproximació és = %.16G\n", inter[intcanviat]);
     
-    eq2[0]=-(coef[1]*coef[1]*coef[1])/27;
-    eq2[1]=coef[0];
-    eq2[2]=1;
+    double x1=2, x2=8;
+    double x2cop;
+    for(int i=0; i<n+1; i++)
+    {
+        x2cop=x2;
+        x2=secant(x1, x2);
+        x1=x2cop;
+        
+        if(fabs(x1-x2)<=error) 
+        {
+            printf("Nombre d'iteracions per la secant: %d\n", i);
+            break;
+        }
+            
+    }
     
-    eq2grau(eq2,uv);
+    printf("L'aproximació és = %.16G\n", x2);
     
-    solreal= powf(uv[0], (double)1./3)+powf(uv[1], (double)1./3);
+    x1=2;
     
-    printf("La solució real és %.16G\n", solreal);
+    for(int i=0; i<n+1; i++)
+    {
+        x2=x1;
+        x1=mnewton(x1);
+        if(fabs(x2-x1)<=error) 
+        {
+        printf("Nombre d'iteracions per mètode de Newton: %d\n", i);
+        break;
+        }
+    }
     
-    printf("L'error és %.16G\n",(solreal*solreal*solreal)-solreal-400);
+    printf("L'aproximació és = %.16G\n", x1);
+    
+    return 0;
+}
+
+double f(double x)
+{
+    return (x*x*x)-x-400;
+}
+
+int biseccio(double inter[2])
+{
+    double mig = (inter[0]+inter[1])/2;
+    double signe= f(inter[0])*f(mig);
+    if(signe<0) 
+    {
+        inter[1] = mig;
+        return 1;
+    }
+    
+    inter[0]=mig;
+    return 0;
     
 }
 
-void eq2grau(double coef[3], double res[2])
+double secant(double x1,double x2)
 {
-    res[0]=(-coef[1]+sqrtf((coef[1]*coef[1]-4*coef[0]*coef[2])))/(2*coef[2]);
-    res[1]=(-coef[1]-sqrtf((coef[1]*coef[1]-4*coef[0]*coef[2])))/(2*coef[2]);
+    double xn;
+    xn= ((x1*f(x2))-(x2*f(x1)))/(f(x2)-f(x1));
+    return xn;
+}
+
+double mnewton(double xn)
+{
+    double xn1;
+    xn1=((2*xn*xn*xn)+400)/((3*xn*xn)-1);
+    return xn1;
 }

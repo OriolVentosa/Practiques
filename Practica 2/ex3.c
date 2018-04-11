@@ -28,9 +28,9 @@ int main(int argc, char* fitxers[])
         fprintf(f,"Ordre %d\n",j);
         for(int i=0; i<iteracions; i++)
         {
-            error1=fabs(xncopia-recu(xncopia));
+            error1=fabs(xncopia-recu(xncopia)); //càlcul |x_n - x_n+1|
             xncopia=recu(xncopia);
-            error2=fabs(xncopia-recu(xncopia));
+            error2=fabs(xncopia-recu(xncopia)); //càlcul |x_n+1 - x_n+2|
             error1copia=error1;
             
             for(int k=1;k<j;k++)
@@ -66,7 +66,7 @@ double ddf(double x)
     return 6*x;
 }
 
-double recu(double xn)
+double recu(double xn)  //càlcul de la recurrència
 {
     return xn-((2*f(xn)*df(xn))/((2*df(xn)*df(xn))-(f(xn)*ddf(xn))));
 }

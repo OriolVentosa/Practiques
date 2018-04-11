@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#define error 1e-8
+#define error 5e-9
 
 float mnewton(float xn);
 
@@ -18,21 +18,20 @@ int main()
     {
         xn1=xn;
         xn=mnewton(xn);
-        if(fabs(xn-xn1)<=error) 
+        if(fabs(xn-xn1)<=error) //mirem l'error absolut 
         {
-            printf("Nombre d'iteracions %d\n", i);
+            printf("Nombre d'iteracions necessàries: %d\n", i);
             break;
         }
             
     }
     
     printf("xn = %.8G\n", xn);
-//     printf("L'error és %.8G\n",(xn*xn*xn)-xn-40);
     
     
 }
 
-float mnewton(float xn)
+float mnewton(float xn) //mètode de Newton per x^3-x-40
 {
     float xn1;
     xn1=((2*xn*xn*xn)+40)/((3*xn*xn)-1);
