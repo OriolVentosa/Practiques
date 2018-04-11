@@ -1,0 +1,68 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[catalan]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Pràctica 2: Zeros de funcions}
+\author{Cristina Rosell Blanco: 1457235  \\ Oriol Ventosa Altimira: 1457285}
+\date{11 de març de 2018}
+\begin{document}
+	\maketitle
+	
+	\newpage
+
+	\section{Problema 1}
+	\paragraph{A:} Tant en precisió simple com en precisió doble, obtenim un error fitat per 0.002 i conseqüentment, l'aproximació de l'arrel és només de 2 xifres significatives.
+	
+	\paragraph{B:} Fent el mètode de Newton amb precisió simple veiem que amb 5 iteracions ja obtenim l'arrel amb 8 xifres significatives, ja que l'error absolut és menor que $\frac{1}{2}10^{-9}$. En canvi, amb precisió doble són necessàries 7 iteracions per obtenir l'arrel amb 15 xifres significatives, és a dir, amb un error absolut menor de $\frac{1}{2}10^{-16}$.
+	
+	\paragraph{C:} Per veure que l'arrel $\beta$ és entre 2 i 8, avaluem la funció $f(x)=x^3-x-400$ a 2 i a 8. Veiem que $f(2)<0$ i que $f(8)>0$. Així doncs, per Bolzano, com que f(x) és contínua, veiem que hi ha una arrel en (2,8). 
+	
+	Utilitzant la fórmula de Cardano per discriminants positius, obtenim com a arrel real 7.413133144378662 amb un error absolut de 0.0278. Per tant, té 1 xifra significativa.
+	
+	Aproximant l'arrel a 12 xifres, ja que amb més és produeixen problemes a nivell de precisió de variables.
+	
+	\subparagraph{c1:} Per el mètode de la bisecció necessitem 43 iteracions.
+	\subparagraph{c2:} Per el mètode de la secant necessitem 6 iteracions.
+	\subparagraph{c3:} Per el mètode de Newton necessitem 10 iteracions.
+	
+	COMPARAR ORDRE DE CONVERGENCIA NÚMERICA
+	
+	\newpage
+	
+	\section{Problema 2}
+	\paragraph{A:} Calculant 10 iteracions de la successió amb el valor inicial de 5.7, mirem els quocients $frac{e_{k}}{e_{k-1}^i}$ per cada iteració i obtenim els següents resultats:
+	    \begin{figure}[h!]
+		\begin{center}	
+			\begin{tabular}{|c|c|c|c|}
+				\hline $Ordres$ & 1 & 2 & 3 \\
+				\hline 1 & \textbf{500(escó 1)} & \textbf{250(escó 3)} & \textbf{166(escó 5)} \\
+				\hline B=300 & \textbf{300(escó 2)} & 150 & 100 \\
+				\hline C=200 & \textbf{200(escó 4)} & 100 & 66 \\
+				\hline D=100 & 100 & 50 & 33 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{figure} 
+	
+	I observem que l'únic valor que s'estabilitza és el de ordre 2.
+	
+	A PARTIR DE 5,7 FUNCIONA, ABANS NO. I ITERACIONS AMB 10 JA ÉS 0, MÉS ENDAVANT ÉS -NAN.
+	
+	\newpage
+	
+	\section{Problema 3}
+	\paragraph{B:} 
+	
+	\newpage
+	
+	\section{Problema 4}
+
+	
+\end{document}
