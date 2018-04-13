@@ -32,34 +32,63 @@
 	\subparagraph{c2:} Per el mètode de la secant necessitem 6 iteracions.
 	\subparagraph{c3:} Per el mètode de Newton necessitem 10 iteracions.
 	
-	COMPARAR ORDRE DE CONVERGENCIA NÚMERICA
+	COMPARAR ORDRE DE CONVERGENCIA 
+	
+	Mètode de bisecció: dona un decimal correcte cada dos o tres iteracions
+	Mètode secant: dona dos o tres decimals correctes cada iteració
+	Mètode de Newton: quan és proper a l'arrel dona entre 4 i 5 decimals correctes a cada iteració
 	
 	\newpage
 	
 	\section{Problema 2}
-	\paragraph{A:} Calculant 10 iteracions de la successió amb el valor inicial de 5.7, mirem els quocients $frac{e_{k}}{e_{k-1}^i}$ per cada iteració i obtenim els següents resultats:
+	\paragraph{A:} Calculant 10 iteracions de la successió amb el valor inicial de 5.7, mirem els quocients $\frac{e_{k}}{(e_{k-1})^i}$ per cada iteració i obtenim els següents resultats:
 	    \begin{figure}[h!]
 		\begin{center}	
 			\begin{tabular}{|c|c|c|c|}
-				\hline $Ordres$ & 1 & 2 & 3 \\
-				\hline 1 & \textbf{500(escó 1)} & \textbf{250(escó 3)} & \textbf{166(escó 5)} \\
-				\hline B=300 & \textbf{300(escó 2)} & 150 & 100 \\
-				\hline C=200 & \textbf{200(escó 4)} & 100 & 66 \\
-				\hline D=100 & 100 & 50 & 33 \\
-				\hline
+				\hline Iteració & Ordre 1 & Ordre 2 &Ordre 3 \\
+\hline 1 & 0.01248918081925201 & \textbf{0.005463913951181786 }& 0.002390417441942918 \\
+\hline 2 & 1.842692755025232 & \textbf{64.54890401705153 }& 2261.126277530449 \\
+\hline 3 & 1.702255038608466 & \textbf{32.35993528700995 }& 615.1636435369242 \\
+\hline 4 & 1.46280082950094 & \textbf{16.33591953962786 }& 182.4324007911864 \\
+\hline 5 & 1.104668372244713 & \textbf{8.433446801228495 }& 64.3840511199098 \\
+\hline 6 & 0.6698905392401661 & \textbf{4.629617534898694 }& 31.99531455355764 \\
+\hline 7 & 0.2824962810940362 & \textbf{2.914406725843755 }& 30.06682612156564 \\
+\hline 8 & 0.06405272718457172 & \textbf{2.339172858148314 }& 85.42539718146021 \\
+\hline 9 & 0.00431413316935736 & \textbf{2.459691339153118 }& 1402.3863535038 \\
+\hline 10 & 2.15632745224664E-05 & \textbf{2.849759631796303 }& 376618.5859459582 \\ \hline
 			\end{tabular}
 		\end{center}
 	\end{figure} 
 	
-	I observem que l'únic valor que s'estabilitza és el de ordre 2.
-	
-	A PARTIR DE 5,7 FUNCIONA, ABANS NO. I ITERACIONS AMB 10 JA ÉS 0, MÉS ENDAVANT ÉS -NAN.
+	I observem que l'únic valor que s'estabilitza és el d'ordre 2.
 	
 	\newpage
 	
 	\section{Problema 3}
-	\paragraph{B:} 
+	\paragraph{B:} Per veure que l'ordre de convergència de la successió és 3 utilitzarem el mateix mètode que el problema anterior, en aquest cas observant com evolucionen els quocients dels ordres 2, 3 i 4.
 	
+	\begin{figure}[h!]
+		\begin{center}	
+			\begin{tabular}{|c|c|c|c|}
+				\hline Iteració & Ordre 2 & Ordre 3 &Ordre 4 \\
+\hline 1 & 0.001428556504355381 & \textbf{4.081604093779827E-06 }& 1.166176621475511E-08 \\
+\hline 2 & 0.002856913665404192 & \textbf{1.632550413993405E-05 }& 9.329021336922217E-08 \\
+\hline 3 & 0.005710795230583281 & \textbf{6.527373165221887E-05 }& 7.460712338254702E-07 \\
+\hline 4 & 0.01137455278196829 & \textbf{0.0002602084821147401 }& 5.952625607557341E-06 \\
+\hline 5 & 0.02203434390101422 & \textbf{0.001013771390866927 }& 4.664229793077517E-05 \\
+\hline 6 & 0.0353760743095244 & \textbf{0.003398516082247287 }& 0.0003264893515384728 \\
+\hline 7 & 0.02787719417111068 & \textbf{0.007272752467876818 }& 0.001897354810328137 \\
+\hline 8 & 0.004662467037722478 & \textbf{0.01138324824668134 }& 0.0277917976893345 \\
+\hline 9 & 9.631885813428722E-06 & \textbf{0.01231392250244575 }& 15.74278291223454 \\
+\hline 10 & 0 & \textbf{0 }& 0 \\
+
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{figure}
+	
+	Observem així que l'únic ordre que no tendeix a 0 o infinit és l'ordre 3.
+	 
 	\newpage
 	
 	\section{Problema 4}

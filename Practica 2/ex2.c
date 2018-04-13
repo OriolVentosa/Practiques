@@ -23,12 +23,12 @@ int main(int argc, char* fitxers[])
     int iteracions;
     printf("Escriu nombre màxim d'iteracions\n");
     scanf("%d",&iteracions);
-    for(int j=1; j<5; j++)
+    for(int j=1; j<4; j++)
     {
         xncopia=xn;
         bn=1/df(xn);
 
-        fprintf(f,"Ordre %d\n",j);
+ //       fprintf(f,"Ordre %d\n",j);
         for(int i=0; i<iteracions;i++)
         {
             error1=fabs(xncopia-serie(xncopia,bn));
@@ -42,7 +42,8 @@ int main(int argc, char* fitxers[])
                 error1=error1*error1copia;
             }
         
-            fprintf(f, "Iteració %d:    %.16G\n",i, error2/error1);
+            //fprintf(f, "Iteració %d:    %.16G\n",i, error2/error1);
+	    fprintf(f, "%.16G\n", error2/error1);
         }
     }
 

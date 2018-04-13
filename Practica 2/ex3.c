@@ -22,10 +22,10 @@ int main(int argc, char* fitxers[])
     printf("Escriu nombre màxim d'iteracions\n");
     scanf("%d",&iteracions);
 
-    for(int j=1;j<6;j++)
+    for(int j=2;j<5;j++)
     {
         xncopia=xn;
-        fprintf(f,"Ordre %d\n",j);
+//        fprintf(f,"Ordre %d\n",j);
         for(int i=0; i<iteracions; i++)
         {
             error1=fabs(xncopia-recu(xncopia)); //càlcul |x_n - x_n+1|
@@ -38,7 +38,7 @@ int main(int argc, char* fitxers[])
                 error1=error1*error1copia;
             }
             
-            fprintf(f, "Iteració %d:    %.16G\n",i, error2/error1);
+            fprintf(f, "%.16G\n", error2/error1);
         }
     }
     
