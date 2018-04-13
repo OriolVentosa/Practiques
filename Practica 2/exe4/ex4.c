@@ -18,7 +18,7 @@ int main(int argc, char* fitxers[])
     double error1=1, error1copia,error2;
     double an,bn,sn,pn;
     int iteracions,x=0;
-    printf("Escriu nombre màxim d'iteracions\n");
+    printf("Escriu nombre d'iteracions\n");
     scanf("%d",&iteracions);
 
 
@@ -35,7 +35,6 @@ int main(int argc, char* fitxers[])
             error1copia=error1;
             pn=recurrenciat(&an,&bn,&sn,i);
             error2=fabs(PI-pn);
-            printf("L'arrel és %.16G\n", pn);
 
             if(x==0 && i!=0 && j==1)
             {
@@ -45,13 +44,25 @@ int main(int argc, char* fitxers[])
                     x=1;
                 }
             }
+
+            if(j==1)
+            {
+                printf("L'error absolut de la iteració %d és %.16G\n", i,error2);
+            }
+            
+            
+            
             for(int k=1;k<j;k++)
             {
                 error1=error1*error1copia;
             }
 
             fprintf(f, "Iteració %d:    %.16G\n",i, error2/error1);
+            
+            
+            
         }
+        
     }
     
     printf("L'arrel és %.16G\n", pn);
@@ -100,7 +111,3 @@ double pk(double x, double y)
 {
     return (2*x*x)/y;
 }
-
-
-
-
