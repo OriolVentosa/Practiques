@@ -32,11 +32,11 @@
 	\subparagraph{c2:} Per el mètode de la secant necessitem 6 iteracions.
 	\subparagraph{c3:} Per el mètode de Newton necessitem 10 iteracions.
 	
-	COMPARAR ORDRE DE CONVERGENCIA 
+	El mètode de bisecció és el que té menor ordre de convergència, ja que aproxima un decimal cada dos o tres iteracions.
 	
-	Mètode de bisecció: dona un decimal correcte cada dos o tres iteracions
-	Mètode secant: dona dos o tres decimals correctes cada iteració
-	Mètode de Newton: quan és proper a l'arrel dona entre 4 i 5 decimals correctes a cada iteració
+	El mètode de Newton, convergeix en 10 iteracions ja que, tot i donar de 4 a 5 decimals quan és prop de l'arrel, al començar per $x_0=2$ s'allunya molt de l'arrel a les primeres iteracions.
+	
+	El mètode de la secant convergeix de 6 iteracions sent així el més ràpid en aquestes condicions.
 	
 	\newpage
 	
@@ -92,6 +92,35 @@
 	\newpage
 	
 	\section{Problema 4}
-
+	
+	Abans d'analitzar l'ordre de convergència hem mirat a partir de quina iteració l'error absolut és major a l'error absolut de l'iteració anterior, en aquest cas a partir de la iteració 5 el error comença a degenerar.
+	
+	També observem que la velocitat de convergència a l'iteració quatre disminueix molt respecte la tercera iteració i per tant el càlcul de l'ordre de convergència allà tampoc té sentit.
+	
+	De manera que el càlcul de l'ordre de convergència que hem utilitzat en els exercicis anterior només el podem aplicar en les tres primeres iteracions.
+	
+	Per verificar que és d'ordre quadràtic fem la taula d'ordres de 1, 2 i 3(amb tres iteracions):
+	
+	\begin{figure}[h!]
+		\begin{center}	
+			\begin{tabular}{|c|c|c|c|}
+				\hline Iteració & Ordre 1 & Ordre 2 &Ordre 3 \\
+				\hline 1 & INF & \textbf{4.931909793448288E+17 }& 1.613490835259473E+27 \\
+				\hline 2 & 0.001901903831424686 & \textbf{0.04127396441818221 }& 0.8957025642654479 \\
+				\hline 3 & 3.487768896996442E-06 & \textbf{0.03979667415618414 }& 454.0940987395674 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{figure}
+	
+	Observem que l'únic ordre estable és dos, i per tant la convergència és quadràtica.
+	
+	El mal condicionament del problema és degut al càlcul de la successió $c_k$.
+	
+	Es produeix un error de cancel·lació al restar els quadrats de $a_k$ i $b_k$, que són definides com a la mitjana aritmètica, $a_k$, i geomètrica, $b_k$, dels valors de la iteració anterior. 
+	
+	Com que és fan diferents mitjanes dels mateixos valors, en poques iteracions els valors de $a_k$ i $b_k$ acaben sent molt similars, produint el error de cancel·lació que comentavem.
+	
+	
 	
 \end{document}

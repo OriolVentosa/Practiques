@@ -2,9 +2,12 @@
 
 int main(int argc, char* arg[])
 {
+    int files;
+    printf("Indica files: ");
+    scanf("%d", &files);
     FILE* entrada;
     FILE* sortida;
-    double matriu[3][10];
+    double matriu[3][files];
     
     if((entrada = fopen(arg[1],"r"))==NULL)  //si no escrivim el nom de l'arxiu o l'escrivim malament
     {
@@ -25,9 +28,9 @@ int main(int argc, char* arg[])
     while(EOF != fscanf(entrada, "%lf", &a))  //mirem el nombre de files que té l'arxiu per saber la llargada del vector
     {
         if(i==4) break;
-        matriu[i][n%10]=a;
+        matriu[i][n%files]=a;
         n=n+1;
-        if(n%10==0) 
+        if(n%files==0) 
         {
             i++;
             printf("%d ",i);
@@ -36,7 +39,7 @@ int main(int argc, char* arg[])
     
     fclose(entrada);
     
-    for(int j=0; j<10; j++)
+    for(int j=0; j<files; j++)
     {
         fprintf(sortida, "%chline %d & %.16G & %ctextbf{%.16G }& %.16G %c%c\n", 92,j+1, matriu[0][j], 92,matriu[1][j], matriu[2][j], 92,92);
         printf("%d ",j);
