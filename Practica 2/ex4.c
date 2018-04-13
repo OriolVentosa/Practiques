@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#define PI 3.14159265359
+#define PI  3.14159265358979323
 double ak(double, double);
 double bk(double, double);
 double sk(double, double, int);
@@ -15,32 +15,46 @@ int main(int argc, char* fitxers[])
     
     if((f=fopen(fitxers[1],"w"))==NULL) return 1;
     
-    double error1, error2;
-    double an,bn,sn,pn,pncopia;
-    int iteracions;
+    double error1=1, error1copia,error2;
+    double an,bn,sn,pn;
+    int iteracions,x=0;
     printf("Escriu nombre màxim d'iteracions\n");
     scanf("%d",&iteracions);
 
-    an=1;   //a0
-    bn=1/(sqrt(2)); //b0
-    sn=1./2; //s0
-        
-    for(int i=0; i<iteracions;i++)
+
+    for(int j=1; j<4; j++)
     {
-        pn=recurrenciat(&an,&bn,&sn,i);
-        error2=fabs(PI-pn);
-        pncopia=pn;
-//         canvi(&an, &bn, &sn,i);
-        error1=error1*error1;
+        an=1;   //a0
+        bn=1/(sqrt(2)); //b0
+        sn=1./2; //s0
+        fprintf(f, "Ordre %d\n",j);
 
-        fprintf(f, "Iteració %d:    %.16G\n",i, error2/error1);
-        
-        error1=error2;
-            
-        printf("L'arrel és %.16G\n", pncopia);
+        for(int i=0; i<iteracions;i++)
+        {
+            error1=error2;
+            error1copia=error1;
+            pn=recurrenciat(&an,&bn,&sn,i);
+            error2=fabs(PI-pn);
+            printf("L'arrel és %.16G\n", pn);
 
+            if(x==0 && i!=0 && j==1)
+            {
+                if(error1<error2) 
+                {
+                    printf("L'error absolut ha degenerat a la iteració %d \n",i+1);
+                    x=1;
+                }
+            }
+            for(int k=1;k<j;k++)
+            {
+                error1=error1*error1copia;
+            }
+
+            fprintf(f, "Iteració %d:    %.16G\n",i, error2/error1);
+        }
     }
-
+    
+    printf("L'arrel és %.16G\n", pn);
     
     fclose(f);
     return 0;
@@ -50,16 +64,11 @@ double recurrenciat(double *an, double *bn, double *sn, int i)
 {
      double ancopia=*an, cn, pn;
      *an=ak(*an,*bn);
-     printf("an: %lf\n", *an);
      *bn=bk(ancopia,*bn);
-     printf("bn: %lf\n", *bn);
      ancopia=*an;
      cn=ck(*an,*bn);
-     printf("cn: %lf\n", cn);
      *sn=sk(*sn,cn,i);
-     printf("sn: %lf\n", *sn);
      pn=pk(*an,*sn);
-//      printf("an: %lf bn: %lf cn: %lf sn: %lf pn: %lf", *an,*bn,cn,*sn,pn);
      return pn;
 }
 
@@ -91,6 +100,7 @@ double pk(double x, double y)
 {
     return (2*x*x)/y;
 }
+
 
 
 

@@ -1,0 +1,53 @@
+Pràctica 2
+
+PROBLEMA 1
+
+Per compilar els programes, escrivim a la terminal:
+gcc -o ex1asimple -g -Wall ex1asimple.c -lm
+gcc -o ex1adoble -g -Wall ex1adoble.c -lm
+gcc -o ex1bsimple -g -Wall ex1bsimple.c -lm
+gcc -o ex1bdoble -g -Wall ex1bdoble.c -lm
+gcc -o ex1cardano -g -Wall ex1cardano.c -lm
+gcc -o ex1c -g -Wall ex1c.c -lm
+
+Per executar-los:
+./ex1asimple
+./ex1adoble
+./ex1bsimple
+./ex1bdoble
+./ex1cardano
+./ex1c
+
+Els 2 programes de l'apartat a (precisió simple i doble) al executar-los ens retornen el valor de l'arrel i l'error al calcular-la.
+Els 2 programes de l'apartat b (precisió simple i doble) et demanen un nombre d'iteracions com a màxim i et retornen les necessàries per aconseguir els 8 i 15 decimals correctes, respectivament, i l'arrel.
+Per l'apartat c tenim dos programes, un que calcula l'arrel amb Cardano i l'altre que engloba els apartats c1,c2 i c3. El ex1cardano ens retorna l'arrel i l'error. El ex1c ens demana un nombre d'iteracions màximes i ens retorna les iteracions necessàries per tenir els 12 decimals amb cada mètode (si demanem més decimals es produeixen errors) i l'arrel, si no retorna el nombre d'iteracions és perquè no ha assolit tots els decimals que demanem.
+
+PROBLEMA 2
+
+Per compilar:
+gcc -o ex2 -g -Wall ex2.c -lm
+
+Per executar-lo escrivim 
+./ex2 "nom de l'arxiu on escriurà els ordres"
+
+Ens demanarà amb quin valor començar (ha de ser més gran que 5.7, sinó no convergeix) i el nombre màxim d'iteracions que volem fer. Ens retornarà l'arrel i l'arxiu amb les constants assimptòtiques, on veurem l'ordre de convergència del mètode.
+
+PROBLEMA 3
+
+Per compilar:
+gcc -o ex3 -g -Wall ex3.c -lm
+
+Per executar-lo, escrivim
+./ex3 "nom de l'arxiu on escriurà els ordres"
+
+Com l'exercici 2, ens demana per quin valor volem començar i quantes iteracions volem fer com a màxim. Ens retorna l'arrel per la terminal i a l'arxiu les constants assimptòtiques amb què veiem quin és l'ordre de convergència.
+
+PROBLEMA 4
+
+Per compilar:
+gcc -o ex4 -g -Wall ex4.c -lm
+
+Per executar-lo,
+./ex4 "nom de l'arxiu on escriurà els ordres"
+
+Només ens demana quantes iteracions volem fer i ens donarà l'arrel i com evoluciona l'error absolut.
