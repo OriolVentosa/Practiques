@@ -48,4 +48,6 @@ Per compilar:
 gcc -o ex4 -g -Wall ex4.c -lm
 
 Per executar-lo,
-./ex4 sdfas 
+./ex4 "nom de l'arxiu on escriurà els ordres"
+
+Només ens demana quantes iteracions volem fer i ens donarà l'arrel i com evoluciona l'error absolut.
