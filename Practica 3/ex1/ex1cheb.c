@@ -25,15 +25,15 @@ int main(int arg, char* argc[])
     double contador=part;
     int dim=part;
     double polinomi[dim];
-    double quoficients[dim];
+    double coeficients[dim];
     for(int i=0;i<dim;i++)
     {
-        quoficients[i]=f(cheb(i, part));
+        coeficients[i]=f(cheb(i, part));
     }
     
-    printf("quoficient %d: %lf\n", 0, quoficients[0]);
+    printf("quoficient %d: %lf\n", 0, coeficients[0]);
     
-    polinomi[0]=quoficients[0];
+    polinomi[0]=coeficients[0];
     
     
     while(contador>1)
@@ -42,21 +42,45 @@ int main(int arg, char* argc[])
 
         for(int i=0;i<contador-1;i++)
         {
-            quoficients[i]=mig(quoficients[i], quoficients[i+1],part,i, i+a);
+            coeficients[i]=mig(coeficients[i], coeficients[i+1],part,i, i+a);
         }
 
-        printf("quoficient %d: %lf\n", a, quoficients[0]);
+        printf("quoficient %d: %.16G\n", a, coeficients[0]);
         contador-=1;
-        polinomi[a]=quoficients[0];
+        polinomi[a]=coeficients[0];
         a+=1;
     }
     
-    for(int i=0; i<part; i++)
+    double x[dim-1];
+    
+    for(int i=0; i<dim-1; i++)
     {
-        fprintf(sortida," %.16G ", polinomi[i]);
+        x[i]=-cheb(i, dim);
     }
     
-    fprintf(sortida,"\n");
+    double pxk=0;
+    double xk;
+    double aux=1;
+    double errormax=0;
+    for(int i=0; i<181; i++)
+    {
+        xk=-0.989+(i*0.011);
+        for(int j=0; j<dim; j++)
+        {
+            pxk+=(polinomi[j]*aux);
+            aux*=(xk-x[j]);
+//	    printf("aux %lf ", aux);
+        }
+        fprintf(sortida, "%.16G: pxk= %.16G fxk= %.16G \n", xk, pxk, f(xk));
+	if(fabs(pxk-f(xk))>errormax) errormax=fabs(pxk-f(xk));
+	pxk=0;
+	aux=1;
+    }
+    printf("Error maxim %.16G\n",errormax);
+    
+    
+    fclose(sortida);
+    
     return 0;
 }
 
