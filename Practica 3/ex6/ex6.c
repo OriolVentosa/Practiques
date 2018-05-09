@@ -40,6 +40,7 @@ int main(int argc, char* arg[])
     
     fclose(entrada);
     
+    fnodes[0]=37.2;
     
     for(int i=0;i<particions+1;i++)
     {
@@ -57,18 +58,16 @@ int main(int argc, char* arg[])
             coeficients[i]=mig(coeficients[i], coeficients[i+1],i, i+a);
         }
 
-        printf("coeficient %d: %lf\n", a, coeficients[0]);
         contador-=1;
         polinomi[a]=coeficients[0];
+//         printf("coeficient %d: %.16G\n", a, polinomi[a]);
         a+=1;
     }
     
-    double nodesnou[29];
     double fnodesnou[29];
     
     for(int i=0; i<15; i++)
     {
-        nodesnou[2*i]=nodes[i];
         fnodesnou[2*i]=fnodes[i];
     }
     
@@ -76,17 +75,17 @@ int main(int argc, char* arg[])
     int xk;
     double aux=1;    
     
-    for(int i=0; i<13; i++)
+    for(int i=0; i<14; i++)
     {
         xk=3+(i*6);
         for(int j=0; j<particions+1; j++)
         {
             pxk+=(polinomi[j]*aux);
-            aux*=(xk-fnodes[j]);
+            aux*=(xk-nodes[j]);
         }
         
-        nodesnou[(2*i)-1]=xk;
-        fnodesnou[(2*i)-1]=pxk;
+        fnodesnou[(2*i)+1]=pxk;
+        printf("%d val %lf\n", xk, pxk);
         
         pxk=0;
         aux=1;
@@ -94,15 +93,22 @@ int main(int argc, char* arg[])
     
     double h=84./28;
     
+    for(int i=0; i<29;i++)
+    {
+        printf("fnodes nous: %lf\n", fnodesnou[i]);
+    }
+    
     for(int i=1; i<27;i++)
     {
         if(i%2==0) suma+=fnodesnou[i]*2;
         else suma+=fnodesnou[i]*4;
     }
     
+    
+    
     suma= (suma+fnodesnou[0]+fnodesnou[28])*h/3;
     
-    printf("El resultat amb Simpson amb %d particions és %.16G\n", particions ,suma);
+    printf("El resultat amb Simpson amb %d particions és %.16G\n", particions*2 ,suma);
     
     return 0;
 }
