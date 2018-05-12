@@ -53,7 +53,7 @@ int main(int arg, char* argc[])
     
     double x[dim-1];
     
-    for(int i=0; i<dim-1; i++)
+    for(int i=0; i<dim; i++)
     {
         x[i]=-cheb(i, dim);
     }
@@ -69,8 +69,8 @@ int main(int arg, char* argc[])
         {
             pxk+=(polinomi[j]*aux);
             aux*=(xk-x[j]);
-//	    printf("aux %lf ", aux);
         }
+        printf("aux %.16G \n", aux);
         fprintf(sortida, "%.16G: pxk= %.16G fxk= %.16G \n", xk, pxk, f(xk));
 	if(fabs(pxk-f(xk))>errormax) errormax=fabs(pxk-f(xk));
 	pxk=0;
