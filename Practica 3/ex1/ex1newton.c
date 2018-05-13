@@ -15,69 +15,66 @@ int main(int arg, char* argc[])
         return 1;
     }
     
-    double part;
+    int part;
     int a=1;
     printf("Indica el nombre de particions: ");
-    scanf("%lf",&part);
-    double contador=part+1;
-    int dim=part+1;
-    double polinomi[dim];
-    double coeficients[dim];
-    for(int i=0;i<dim;i++)
+    scanf("%d",&part);
+    int nnodes=part+1;
+    double contador=nnodes;
+    double polinomi[nnodes];
+    double coeficients[nnodes];
+    double nodes[nnodes];
+    
+    for(int i=0; i<nnodes; i++)
     {
-        coeficients[i]=f(equi(i,part));
+        nodes[i]=equi(i, part);
     }
     
-    printf("coeficient %d: %lf\n", 0, coeficients[0]);
-    
+    for(int i=0;i<nnodes;i++)
+    {
+        coeficients[i]=f(nodes[i]);
+    }
+        
     polinomi[0]=coeficients[0];
-    
+
     while(contador>1)
     {
-//         printf("%d: \n", a);
-
         for(int i=0;i<contador-1;i++)
         {
             coeficients[i]=mig(coeficients[i], coeficients[i+1],part,i, i+a);
         }
 
-        printf("coeficient %d: %lf\n", a, coeficients[0]);
         contador-=1;
         polinomi[a]=coeficients[0];
+
         a+=1;
-    }
-    
-    double x[dim-1];
-    
-    for(int i=0; i<dim-1; i++)
-    {
-        x[i]=equi(i, dim);
     }
     
     double pxk=0;
     double xk;
     double aux=1;
     double errormax=0;
+    
     for(int i=0; i<181; i++)
     {
         xk=-0.989+(i*0.011);
-        for(int j=0; j<dim; j++)
+        for(int j=0; j<nnodes; j++)
         {
             pxk+=(polinomi[j]*aux);
-            aux*=(xk-x[j]);
+            aux*=(xk-nodes[j]);
         }
-        
-        fprintf(sortida, "%.16G %.16G %.16G \n", xk, pxk, f(xk));
-        if(fabs(pxk-f(xk))>errormax) errormax=fabs(pxk-f(xk));
-        pxk=0;
-        aux=1;
+
+        fprintf(sortida, "[%lf,%lf],",xk,pxk);  //S'escriu al fitxer de sortida d'aquesta forma per representar-ho mes facilment al maxima
+
+	if(fabs(pxk-f(xk))>errormax) errormax=fabs(pxk-f(xk));
+	pxk=0;
+	aux=1;
     }
-    printf("Error maxim %.16G\n",errormax);
     
+    printf("Error maxim %.16G\n",errormax);
     
     fclose(sortida);
     
-    fprintf(sortida,"\n");
     return 0;
 }
 

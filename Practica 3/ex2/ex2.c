@@ -45,7 +45,7 @@ int main(int argc, char* arg[])
     {
         grau=1;
         printf("Apartat %d:\n",exercici);
-        for(grau<6)
+        while(grau<6)
         {
             double coeficients[grau+1];
             double nousnodes[grau+1];
