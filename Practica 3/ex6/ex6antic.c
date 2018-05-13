@@ -49,7 +49,7 @@ int main(int argc, char* arg[])
     
     suma= (suma+fnodes[0]+fnodes[particions])*h/3;
     
-    printf("El resultat amb Simpson amb %d particions és %.16G\n", particions*2 ,suma);
+    printf("El resultat amb Simpson amb %d particions és %.16G\n", particions ,suma);
     
     return 0;
 }
