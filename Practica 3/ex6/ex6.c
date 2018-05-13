@@ -51,8 +51,6 @@ int main(int argc, char* arg[])
     
     while(contador>1)
     {
-//         printf("%d: \n", a);
-
         for(int i=0;i<contador-1;i++)
         {
             coeficients[i]=mig(coeficients[i], coeficients[i+1],i, i+a);
@@ -60,7 +58,6 @@ int main(int argc, char* arg[])
 
         contador-=1;
         polinomi[a]=coeficients[0];
-//         printf("coeficient %d: %.16G\n", a, polinomi[a]);
         a+=1;
     }
     
@@ -85,7 +82,6 @@ int main(int argc, char* arg[])
         }
         
         fnodesnou[(2*i)+1]=pxk;
-        printf("%d val %lf\n", xk, pxk);
         
         pxk=0;
         aux=1;
@@ -93,19 +89,12 @@ int main(int argc, char* arg[])
     
     double h=84./28;
     
-    for(int i=0; i<29;i++)
-    {
-        printf("fnodes nous: %lf\n", fnodesnou[i]);
-    }
-    
     for(int i=1; i<27;i++)
     {
         if(i%2==0) suma+=fnodesnou[i]*2;
         else suma+=fnodesnou[i]*4;
     }
-    
-    
-    
+   
     suma= (suma+fnodesnou[0]+fnodesnou[28])*h/3;
     
     printf("El resultat amb Simpson amb %d particions és %.16G\n", particions*2 ,suma);
