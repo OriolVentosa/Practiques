@@ -28,17 +28,11 @@ int main(int argc, char* arg[])
     
     fclose(entrada);
     
-//     for(int i=0;i<12;i++)
-//     {
-//         printf("%.16G %.16G\n", nodes[i], fnodes[i]);
-//     }
-    
+
     double part=11;
     int a;
     part=part+1;
     double contador=part;
-    
-//     printf("coeficient %d: %.16G\n", 0, fnodes[0]);
     
     int grau, exercici=1;
     while(exercici<4)
@@ -55,8 +49,6 @@ int main(int argc, char* arg[])
                 {
                     coeficients[i]=fnodes[6-grau-1+i];
                     nousnodes[i]=nodes[6-grau-1+i];
-//                     printf("nodes[%i]=%.16G\n",i,nousnodes[i]);
-//                     printf("coef[%i]=%.16G\n",i,coeficients[i]);
                 }
             }
             
@@ -66,8 +58,6 @@ int main(int argc, char* arg[])
                 {
                     coeficients[i]=fnodes[6+i];
                     nousnodes[i]=nodes[6+i];
-//                     printf("nodes[%i]=%.16G\n",i,nousnodes[i]);
-//                     printf("coef[%i]=%.16G\n",i,coeficients[i]);
                 }            
             }
             
@@ -77,8 +67,6 @@ int main(int argc, char* arg[])
                 {
                     coeficients[i]=fnodes[((11-grau)/2)+i];
                     nousnodes[i]=nodes[((11-grau)/2)+i];
-//                     printf("nodes[%i]=%.16G\n",i,nousnodes[i]);
-//                     printf("coef[%i]=%.16G\n",i,coeficients[i]);
                 }            
             }
             
@@ -96,8 +84,6 @@ int main(int argc, char* arg[])
                 {
                     coeficients[i]=mig(coeficients[i], coeficients[i+1], nousnodes[i],nousnodes[i+a]);
                 }
-
- //               printf("coeficient %d: %.16G\n", a, coeficients[0]);
                 contador-=1;
                 polinomi[a]=coeficients[0];
                 a+=1;

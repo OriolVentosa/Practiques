@@ -94,9 +94,7 @@ int main(int argc, char* arg[])
         if(i%2==0) suma+=fnodesnou[i]*2;
         else suma+=fnodesnou[i]*4;
     }
-    
-    
-    
+   
     suma= (suma+fnodesnou[0]+fnodesnou[28])*h/3;
     
     printf("El resultat amb Simpson amb %d particions és %.16G\n", particions*2 ,suma);

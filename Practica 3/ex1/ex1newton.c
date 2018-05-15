@@ -92,4 +92,3 @@ double equi(double x, double n)
 {
     return -1.+(x*2./n);
 }
-
