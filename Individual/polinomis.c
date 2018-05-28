@@ -21,6 +21,8 @@ double exp1(double);
 double intexp1(int, double [],double []);
 double exp1(double);
 double intexp2(int, double [],double []);
+double trapezisabs(int);
+double trapezisexp(int);
 
 int main()
 {
@@ -43,9 +45,9 @@ int main()
         ai[i]=PI/n;
     }
     
-    printf("Valor absolut Chebyxhev: %lf\n", intabs2(n, arrels, ai));
+    printf("Valor absolut Chebyxhev: %.16G\n", intabs2(n, arrels, ai));
     
-    printf("Exponencial Chebyxhev: %lf\n", intexp2(n, arrels, ai));
+    printf("Exponencial Chebyxhev: %.16G\n", intexp2(n, arrels, ai));
     
     intervalsleg(n, inter);                 //Trobar intervals de Legendre
     mig(n, inter, arrels);
@@ -60,9 +62,13 @@ int main()
         ai[i]=aileg(n, arrels[i]);          //Trobar coeficients de Legendre
     }
     
-    printf("Valor absolut Legendre: %lf\n", intabs1(n, arrels, ai));
+    printf("Valor absolut Legendre: %.16G\n", intabs1(n, arrels, ai));
     
-    printf("Exponencial Legendre: %lf\n", intexp1(n, arrels, ai));
+    printf("Exponencial Legendre: %.16G\n", intexp1(n, arrels, ai));
+    
+    printf("Valor absolut %d particions trapezis: %.16G\n", n, trapezisabs(n));
+    
+    printf("Exponencial %d particions trapezis: %.16G\n", n, trapezisexp(n));
 
     return 0;
 }
@@ -356,5 +362,63 @@ double intexp2(int n, double arrels[],double ai[])
     {
         suma+=ai[i]*exp2(arrels[i]);
     }
+    return suma;
+}
+
+double trapezisabs(int particions)
+{
+    double suma=0, aux=0;
+    double nodes[particions+1];
+    double fnodes[particions+1];
+    double h=2./particions;
+    
+    for(int i=0; i<particions+1; i++)
+    {
+        nodes[i]=-1+aux*h;
+        aux++;
+    }
+    
+    for(int i=0; i<particions+1;i++)
+    {
+        fnodes[i]=abs1(nodes[i]);
+    }
+    for(int i=1; i<particions;i++)
+    {
+        suma+=fnodes[i]*2;
+    }
+    
+    suma= (suma+fnodes[0]+fnodes[particions])*h/2;
+    
+    return suma;
+}
+
+double trapezisexp(int particions)
+{
+    double suma=0, aux=1;
+    double nodes[particions+1];
+    double fnodes[particions+1];
+    nodes[0]=-0.9999;
+    nodes[particions]=0.9999;
+    double h=nodes[particions]-nodes[0]/particions;
+    
+
+    
+    for(int i=1; i<particions; i++)
+    {
+        nodes[i]=-1+aux*h;
+        aux++;
+    }
+    
+    for(int i=0; i<particions+1;i++)
+    {
+        fnodes[i]=exp1(nodes[i]);
+    }
+    for(int i=1; i<particions;i++)
+    {
+        suma+=fnodes[i]*2;
+    }
+    
+    suma= (suma+fnodes[0]+fnodes[particions])*h/2;
+    
     return suma;
 }
